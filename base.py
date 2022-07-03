@@ -32,5 +32,37 @@ class Scrape:
         self.driver_actions = DriverActions(self.driver)
         self.soup = self.parse_html(self.driver.page_source)
 
+    def get_driver(self):
+        return self.driver
+
+    def get_soup(self):
+        return self.soup
+
+    def get_links(self):
+        self.get_html()
+        return self.soup.find_all('a')
+
+    def get_all_images(self):
+        self.get_html()
+        return self.soup.find_all('img')
+
+    def convert_to_csv(self, data):
+        pass
+
+    def convert_to_json(self, data):
+        pass
+
+    def convert_to_xml(self, data):
+        pass
+
+    def convert_to_yaml(self, data):
+        pass
+
+    def convert_to_html(self, data):
+        pass
+
+    def convert_to_markdown(self, data):
+        pass
+
     def close(self):
         self.driver.close()
