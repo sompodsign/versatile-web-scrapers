@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from driver_actions import DriverActions
 
 
-class Scrape:
+class BaseScraper:
 
     OPTIONS = Options()
     OPTIONS.add_argument('--headless')

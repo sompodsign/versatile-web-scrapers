@@ -3,10 +3,10 @@ import time
 
 from selenium.webdriver.common.by import By
 
-from base import Scrape
+from base import BaseScraper
 
 
-class DigitalOcean(Scrape):
+class DigitalOcean(BaseScraper):
     def __init__(self, url):
         super().__init__(url)
         self.accept_cookies()
@@ -22,15 +22,3 @@ class DigitalOcean(Scrape):
 
     def get_all_tutorial_links(self):
         return self.soup.find_all('a', href=re.compile('/community/tutorials/.*'))
-
-
-digitalOcean = DigitalOcean('https://www.digitalocean.com/community/tutorials')
-
-
-for i in range(10):
-    digitalOcean.click_show_more_button()
-
-digitalOcean.get_html()
-print(len(digitalOcean.get_all_tutorial_links()))
-
-digitalOcean.close()
