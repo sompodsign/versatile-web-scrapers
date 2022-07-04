@@ -10,7 +10,6 @@ class DigitalOcean(BaseScraper):
     def __init__(self, url):
         super().__init__(url)
         self.accept_cookies()
-        self.tutorial_links = []
 
     def accept_cookies(self):
         self.driver.find_element(By.XPATH, "//button[normalize-space()='OK']").click()
@@ -21,4 +20,10 @@ class DigitalOcean(BaseScraper):
         time.sleep(4)
 
     def get_all_tutorial_links(self):
-        return self.soup.find_all('a', href=re.compile('/community/tutorials/.*'))
+        link_elems = self.soup.find_all('a', href=re.compile('/community/tutorials/.*'))
+
+        tutorial_hrefs = []
+        for link in link_elems:
+            link = "https://digitalocean.com" + link['href']
+            tutorial_hrefs.append(link if link not in tutorial_hrefs else None)
+        return tutorial_hrefs
