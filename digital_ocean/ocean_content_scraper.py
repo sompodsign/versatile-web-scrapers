@@ -23,7 +23,7 @@ def get_tutorial_content():
     links = get_tutorial_links('digital_ocean_tutorials.csv')
     for link in links:
         content = get_content(link)
-        print(content)
+        return content
 
 
 get_tutorial_content()
